@@ -1,11 +1,71 @@
-// NextGen AI Lab - App.js with ChatBot Page
+// NextGen AI Lab - App.js with Chat UI on Home Page
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ChatBot from './pages/ChatBot';
+import { useState } from 'react';
+
+function ChatWidgetMock() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { from: 'bot', text: 'Hi there! I'm ByteBuddy 🤖 — how can I help you?' }
+  ]);
+  const [input, setInput] = useState('');
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { from: 'user', text: input }]);
+    setInput('');
+    // Simulate bot reply
+    setTimeout(() => {
+      setMessages((msgs) => [...msgs, { from: 'bot', text: 'Cool! Tell me more.' }]);
+    }, 500);
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      <button
+        onClick={() => setOpen(!open)}
+        className="bg-teal-500 hover:bg-teal-400 text-white p-3 rounded-full shadow-lg"
+      >
+        {open ? '×' : '💬'}
+      </button>
+
+      {open && (
+        <div className="w-80 h-96 bg-blue-900 rounded-2xl p-4 shadow-2xl mt-2 flex flex-col">
+          <div className="flex-1 overflow-y-auto mb-2 space-y-2">
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`p-2 rounded-xl max-w-[75%] ${msg.from === 'bot' ? 'bg-blue-700 text-left' : 'bg-teal-500 text-white ml-auto text-right'}`}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              className="flex-1 p-2 rounded-lg bg-blue-800 text-white border border-blue-600"
+              placeholder="Say something..."
+            />
+            <button
+              onClick={handleSend}
+              className="bg-teal-600 px-4 py-2 rounded-lg hover:bg-teal-400"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Home() {
   return (
-    <section className="max-w-5xl mx-auto text-center">
+    <section className="max-w-5xl mx-auto text-center relative">
       <h1 className="text-5xl font-extrabold leading-tight mb-4">
         Welcome to <span className="text-teal-400">NextGen AI Lab</span>
       </h1>
@@ -24,6 +84,25 @@ function Home() {
           </button>
         </Link>
       </div>
+
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
+          <h2 className="text-2xl font-bold mb-2 text-teal-300">Interactive AI Learning</h2>
+          <p>Experience AI concepts through stories, games, and coding playgrounds designed for curious minds.</p>
+        </div>
+
+        <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
+          <h2 className="text-2xl font-bold mb-2 text-teal-300">Build Your Own Projects</h2>
+          <p>Create your own AI tools with guided tutorials and launch them to the world. No coding background needed!</p>
+        </div>
+
+        <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
+          <h2 className="text-2xl font-bold mb-2 text-teal-300">Join a Global Community</h2>
+          <p>Connect with young innovators from around the globe, share your work, and learn together.</p>
+        </div>
+      </div>
+
+      <ChatWidgetMock />
     </section>
   );
 }
