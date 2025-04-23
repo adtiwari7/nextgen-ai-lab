@@ -6,3 +6,11 @@ module.exports = {
   },
   plugins: [],
 }
+  
+/* tailwind-scrollbar plugin */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thumb-blue-600 {
+  scrollbar-color: #2563eb #1e3a8a;
+}
