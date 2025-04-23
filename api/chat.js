@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "You are ByteBuddy, a helpful, fun, slightly quirky AI assistant made by a young tech creator named Adhyayan." },
+        { role: "system", content: "You are ByteBuddy, a helpful and slightly funny AI assistant for beginners learning about AI." },
         { role: "user", content: message }
       ],
       temperature: 0.7,
