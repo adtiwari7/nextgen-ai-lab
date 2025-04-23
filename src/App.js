@@ -42,7 +42,7 @@ function Home() {
         </div>
       </div>
 
-      <ChatWidget />
+
     </section>
   );
 }
