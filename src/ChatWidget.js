@@ -31,7 +31,7 @@ export default function ChatWidget() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto mb-4 space-y-2 p-2">
+      <div className="overflow-y-auto space-y-2 p-2 h-[400px] max-h-[400px] scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-blue-800 rounded-md">
         {messages.map((msg, i) => (
           <div
             key={i}
