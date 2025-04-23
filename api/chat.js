@@ -1,4 +1,3 @@
-// api/chat.js - Handles GPT responses for ByteBuddy
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Only POST requests allowed' });
@@ -7,43 +6,39 @@ export default async function handler(req, res) {
   const { message } = req.body;
 
   try {
-    console.log("➡️ User message:", message);
-    console.log("🔐 Using key:", process.env.OPENAI_API_KEY ? "✅ Exists" : "❌ MISSING");
-
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "HTTP-Referer": "https://nextgen-ai-lab.vercel.app",
+        "X-Title": "ByteBuddy-AI"
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "mistralai/mixtral-8x7b-instruct", // or try "openchat/openchat-7b"
         messages: [
           {
             role: "system",
-            content:
-              "You are ByteBuddy, a friendly, witty, and helpful AI assistant built by Adhyayan to help young minds learn about technology, coding, and AI. Answer clearly and with a touch of fun."
+            content: "You are ByteBuddy, a friendly and witty assistant who helps young students learn about AI in fun, simple ways. You reply with warmth, clarity, and cool tech vibes."
           },
           {
             role: "user",
             content: message
           }
-        ],
-        temperature: 0.7
+        ]
       })
     });
 
     const data = await response.json();
-    console.log("📦 OpenAI API Response:", JSON.stringify(data));
 
     if (!data.choices || !data.choices[0]) {
-      return res.status(500).json({ reply: "Hmm, ByteBuddy didn’t get a clear response. Try asking again?" });
+      return res.status(500).json({ reply: "Oops! No reply from the AI. Try again?" });
     }
 
-    const reply = data.choices[0].message.content || "Oops! GPT replied blank. Wanna try rephrasing that?";
+    const reply = data.choices[0].message.content;
     return res.status(200).json({ reply });
   } catch (err) {
-    console.error("🚨 Chat API Error:", err);
-    return res.status(500).json({ reply: "Something went wrong while talking to OpenAI. Please try again." });
+    console.error("🔥 OpenRouter API Error:", err);
+    return res.status(500).json({ reply: "ByteBuddy glitched out. Try again in a few?" });
   }
 }
