@@ -1,8 +1,7 @@
 // NextGen AI Lab - App.js with ChatWidget
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import ChatBot from './pages/ChatBot';
-import ChatWidget from './ChatWidget';
+
 
 function Home() {
   return (
