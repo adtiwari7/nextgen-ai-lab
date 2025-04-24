@@ -1,6 +1,5 @@
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
 
 function Home() {
   return (
@@ -11,18 +10,6 @@ function Home() {
       <p className="text-xl text-blue-200 mb-8">
         Learn, build, and create with the power of Artificial Intelligence. Your journey to innovation starts here.
       </p>
-      <div className="flex justify-center gap-4">
-        <Link to="/get-started">
-          <button className="bg-teal-500 hover:bg-teal-400 text-white font-semibold py-2 px-6 rounded-2xl shadow-xl transition">
-            Get Started
-          </button>
-        </Link>
-        <Link to="/about">
-          <button className="bg-white hover:bg-gray-100 text-blue-900 font-semibold py-2 px-6 rounded-2xl shadow-xl transition">
-            Learn More
-          </button>
-        </Link>
-      </div>
 
       <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
