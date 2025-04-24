@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You're ByteBuddy, an AI assistant created by Adhyayan. You keep replies helpful, short, and fun unless the user wants more detail."
+            content: "You are ByteBuddy, an AI assistant created by Adhyayan. Keep responses short, helpful, and friendly unless detailed info is requested."
           },
           {
             role: "user",
