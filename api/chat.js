@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Only POST requests allowed' });
@@ -15,11 +13,11 @@ module.exports = async function handler(req, res) {
         "Authorization": `Bearer ${process.env.TOGETHER_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "meta-llama/Llama-2-7b-chat-hf", // You can also try mixtral, mistral, zephyr, etc.
+        model: "meta-llama/Llama-2-7b-chat-hf",
         messages: [
           {
             role: "system",
-            content: `You're ByteBuddy, a chill, helpful AI assistant created by Adhyayan. Keep replies short and fun unless asked for detailed explanations. You help people explore AI creatively.`
+            content: "You're ByteBuddy, a chill AI created by Adhyayan. You help with short, helpful AI answers. Be casual and supportive unless asked for deep detail."
           },
           {
             role: "user",
@@ -34,7 +32,6 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
 
     if (!data.choices || !data.choices[0]) {
-      console.error("⚠️ Together API returned invalid response:", data);
       return res.status(500).json({ reply: "ByteBuddy didn’t get a valid response. Wanna try again?" });
     }
 
@@ -42,6 +39,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ reply });
   } catch (err) {
     console.error("🔥 Together.ai API Error:", err);
-    return res.status(500).json({ reply: "Oops! ByteBuddy had a connection issue with Together.ai." });
+    return res.status(500).json({ reply: `Oops! ByteBuddy crashed. Reason: ${err.message}` });
   }
 };
