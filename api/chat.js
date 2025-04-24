@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+const fetch = require("node-fetch");
+
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Only POST requests allowed' });
   }
@@ -6,39 +8,40 @@ export default async function handler(req, res) {
   const { message } = req.body;
 
   try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    const response = await fetch("https://api.together.xyz/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://nextgen-ai-lab.vercel.app",
-        "X-Title": "ByteBuddy-AI"
+        "Authorization": `Bearer ${process.env.TOGETHER_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "mistralai/mixtral-8x7b-instruct", // or try "openchat/openchat-7b"
+        model: "meta-llama/Llama-2-7b-chat-hf", // You can also try mixtral, mistral, zephyr, etc.
         messages: [
           {
             role: "system",
-            content: `You're ByteBuddy, a fun, helpful, and casual AI assistant for teens and beginners learning about technology and AI.  Keep your replies short, friendly, and human-like unless you're asked for an explanation.  If someone says "hi", "hello", or "how are you", just greet them warmly in 1-2 lines.  Only use emojis occasionally. Avoid long paragraphs unless it's an explanation request.  Your tone is chill, supportive, and smart and give cool tech vibes."
+            content: `You're ByteBuddy, a chill, helpful AI assistant created by Adhyayan. Keep replies short and fun unless asked for detailed explanations. You help people explore AI creatively.`
           },
           {
             role: "user",
             content: message
           }
-        ]
+        ],
+        temperature: 0.7,
+        top_p: 0.9
       })
     });
 
     const data = await response.json();
 
     if (!data.choices || !data.choices[0]) {
-      return res.status(500).json({ reply: "Oops! No reply from the AI. Try again?" });
+      console.error("⚠️ Together API returned invalid response:", data);
+      return res.status(500).json({ reply: "ByteBuddy didn’t get a valid response. Wanna try again?" });
     }
 
     const reply = data.choices[0].message.content;
     return res.status(200).json({ reply });
   } catch (err) {
-    console.error("🔥 OpenRouter API Error:", err);
-    return res.status(500).json({ reply: "ByteBuddy glitched out. Try again in a few?" });
+    console.error("🔥 Together.ai API Error:", err);
+    return res.status(500).json({ reply: "Oops! ByteBuddy had a connection issue with Together.ai." });
   }
-}
+};
