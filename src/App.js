@@ -1,6 +1,5 @@
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import AIYouthIllustration from './assets/ai-youth-illustration.png';
 
 function Home() {
   return (
@@ -39,15 +38,15 @@ function About() {
       <p className="text-blue-200 text-lg mb-6">
         NextGen AI Lab is a youth-driven platform where the next generation of innovators learn artificial intelligence by building real-world projects. We believe in learning by doing — with AI tools, guided challenges, and a global creative community.
       </p>
-      <img
-        src={AIYouthIllustration}
-        alt="Illustration of youth innovating in AI"
-        className="w-full max-w-md mx-auto my-10 rounded-2xl shadow-lg"
-      />
       <h3 className="text-2xl font-semibold text-white mt-10 mb-4">About the Founder</h3>
-      <p className="text-blue-200 text-lg">
+      <p className="text-blue-200 text-lg mb-6">
         Hi, I'm <strong>Adhyayan Tiwari</strong>, a student, dreamer, and AI enthusiast. My passion for using technology to solve real-world problems — especially in the fields of robotics, education, and safety — inspired me to build this lab. I’ve worked on disaster response bots, health care AI, and even wrote a fun book called "Hey AI, What’s Up?" to make AI accessible for everyone. NextGen AI Lab is my way of bringing that same energy to youth across the globe.
       </p>
+      <img
+        src="/ChatGPT Image Apr 24, 2025, 02_06_18 PM.png"
+        alt="About NextGen AI Lab"
+        className="w-full max-w-xl mx-auto rounded-2xl shadow-lg mt-10"
+      />
     </div>
   );
 }
@@ -75,3 +74,4 @@ export default function App() {
       </main>
     </Router>
   );
+}
