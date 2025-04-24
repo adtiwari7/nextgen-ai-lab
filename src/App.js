@@ -1,7 +1,6 @@
-// NextGen AI Lab - App.js with ChatWidget
 import './index.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import { useState } from 'react';
 
 function Home() {
   return (
@@ -12,7 +11,6 @@ function Home() {
       <p className="text-xl text-blue-200 mb-8">
         Learn, build, and create with the power of Artificial Intelligence. Your journey to innovation starts here.
       </p>
-
       <div className="flex justify-center gap-4">
         <Link to="/get-started">
           <button className="bg-teal-500 hover:bg-teal-400 text-white font-semibold py-2 px-6 rounded-2xl shadow-xl transition">
@@ -31,17 +29,17 @@ function Home() {
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Interactive AI Learning</h2>
           <p>Experience AI concepts through stories, games, and coding playgrounds designed for curious minds.</p>
         </div>
+
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Build Your Own Projects</h2>
           <p>Create your own AI tools with guided tutorials and launch them to the world. No coding background needed!</p>
         </div>
+
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Join a Global Community</h2>
           <p>Connect with young innovators from around the globe, share your work, and learn together.</p>
         </div>
       </div>
-
-
     </section>
   );
 }
@@ -67,7 +65,6 @@ export default function App() {
             <Link to="/" className="hover:text-white">Home</Link>
             <Link to="/get-started" className="hover:text-white">Get Started</Link>
             <Link to="/about" className="hover:text-white">About</Link>
-            <Link to="/chat" className="hover:text-white">ChatBot</Link>
           </div>
         </nav>
       </header>
@@ -77,7 +74,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/get-started" element={<About />} />
-          <Route path="/chat" element={<ChatBot />} />
         </Routes>
       </main>
     </Router>
