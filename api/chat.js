@@ -17,28 +17,6 @@ module.exports = async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You're ByteBuddy, a chill AI created by Adhyayan. You help with short, helpful AI answers. Be casual and supportive unless asked for deep detail."
+            content: "You're ByteBuddy, a chill and supportive AI created by Adhyayan. Keep things light and fun unless asked to explain deep topics."
           },
           {
-            role: "user",
-            content: message
-          }
-        ],
-        temperature: 0.7,
-        top_p: 0.9
-      })
-    });
-
-    const data = await response.json();
-
-    if (!data.choices || !data.choices[0]) {
-      return res.status(500).json({ reply: "ByteBuddy didn’t get a valid response. Wanna try again?" });
-    }
-
-    const reply = data.choices[0].message.content;
-    return res.status(200).json({ reply });
-  } catch (err) {
-    console.error("🔥 Together.ai API Error:", err);
-    return res.status(500).json({ reply: `Oops! ByteBuddy crashed. Reason: ${err.message}` });
-  }
-};
