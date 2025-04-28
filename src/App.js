@@ -66,7 +66,7 @@ function HeyAIWhatsUp() {
     <div className="max-w-3xl mx-auto text-center mt-20">
       <h2 className="text-4xl font-bold text-teal-400 mb-6">📚 Hey AI, What's Up?</h2>
       <p className="text-blue-200 text-lg mb-8">
-        Dive into a fun, beginner-friendly guide to the amazing world of Artificial Intelligence. No complex jargon, just real ideas, real coding, and a real chance to build your future!
+        Hey AI, What’s Up? is your friendly first step into the world of Artificial Intelligence. Written for students, curious beginners, and anyone who thinks AI sounds too complicated, this book makes it simple, exciting, and real. Through fun stories, clear explanations, and hands-on coding projects, you’ll explore how AI sees, talks, and learns — and how you can build with it too. No heavy math. No confusing jargon. Just real ideas, real code, and a real chance to start your AI journey. Ready to meet the future? Let’s go! 🚀
       </p>
       
       <div className="flex flex-col items-center gap-4">
