@@ -11,21 +11,30 @@ function Home() {
         Learn, build, and create with the power of Artificial Intelligence. Your journey to innovation starts here.
       </p>
 
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-10">
+        {/* Card 1 */}
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Interactive AI Learning</h2>
           <p>Experience AI concepts through stories, games, and coding playgrounds designed for curious minds.</p>
         </div>
 
+        {/* Card 2 */}
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Build Your Own Projects</h2>
           <p>Create your own AI tools with guided tutorials and launch them to the world. No coding background needed!</p>
         </div>
 
+        {/* Card 3 */}
         <div className="bg-blue-900 p-6 rounded-2xl shadow-lg">
           <h2 className="text-2xl font-bold mb-2 text-teal-300">Join a Global Community</h2>
           <p>Connect with young innovators from around the globe, share your work, and learn together.</p>
         </div>
+
+        {/* 📚 NEW Card for Book */}
+        <Link to="/hey-ai-whats-up" className="bg-blue-900 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 text-center">
+          <h2 className="text-2xl font-bold mb-2 text-teal-300">📚 Hey AI, What's Up?</h2>
+          <p>A beginner’s playful guide to Artificial Intelligence!</p>
+        </Link>
       </div>
     </section>
   );
@@ -51,6 +60,30 @@ function About() {
   );
 }
 
+// 📚 NEW Book Page
+function HeyAIWhatsUp() {
+  return (
+    <div className="max-w-3xl mx-auto text-center mt-20">
+      <h2 className="text-4xl font-bold text-teal-400 mb-6">📚 Hey AI, What's Up?</h2>
+      <p className="text-blue-200 text-lg mb-8">
+        Dive into a fun, beginner-friendly guide to the amazing world of Artificial Intelligence. No complex jargon, just real ideas, real coding, and a real chance to build your future!
+      </p>
+      
+      <div className="flex flex-col items-center gap-4">
+        <a href="https://amzn.in/d/3QFgkHv" target="_blank" className="bg-teal-500 px-6 py-3 rounded-lg hover:bg-teal-600 text-white font-semibold">
+          Buy on Amazon
+        </a>
+        <a href="https://www.flipkart.com/hey-ai-what-s-up/p/itm3962aa7a1aa17?pid=9798899067303&affid=editornoti" target="_blank" className="bg-teal-500 px-6 py-3 rounded-lg hover:bg-teal-600 text-white font-semibold">
+          Buy on Flipkart
+        </a>
+        <a href="https://direct.notionpress.com/in/read/hey-ai-what-s-up-hardcover/" target="_blank" className="bg-teal-500 px-6 py-3 rounded-lg hover:bg-teal-600 text-white font-semibold">
+          Buy on NotionPress
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Router>
@@ -70,6 +103,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/get-started" element={<About />} />
+          <Route path="/hey-ai-whats-up" element={<HeyAIWhatsUp />} /> {/* 📚 NEW Route */}
         </Routes>
       </main>
     </Router>
